@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "(name)"; ObjectID = "bpF-0b-L9k"; */
+"bpF-0b-L9k.text" = "(name)";
+
+/* Class = "UILabel"; text = "(followers)"; ObjectID = "fSZ-nc-6CC"; */
+"fSZ-nc-6CC.text" = "(followers)";
+
+/* Class = "UILabel"; text = "(location)"; ObjectID = "gAk-hY-NMW"; */
+"gAk-hY-NMW.text" = "(location)";
+
+/* Class = "UILabel"; text = "(league)"; ObjectID = "rIM-50-JFy"; */
+"rIM-50-JFy.text" = "(league)";
+
+/* Class = "UISearchBar"; placeholder = "Enter Player Username..."; ObjectID = "rmY-5E-N55"; */
+"rmY-5E-N55.placeholder" = "Enter Player Username...";
+
+/* Class = "UITabBarItem"; title = "Player Stats"; ObjectID = "vRH-Yo-tpV"; */
+"vRH-Yo-tpV.title" = "Player Stats";
+
+/* Class = "UITabBarItem"; title = "Player Details"; ObjectID = "yZY-2V-8bD"; */
+"yZY-2V-8bD.title" = "Player Details";
