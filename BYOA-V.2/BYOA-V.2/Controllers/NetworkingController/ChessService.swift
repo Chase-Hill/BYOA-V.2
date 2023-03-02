@@ -75,7 +75,7 @@ struct ChessService {
     }
     
     static func fetchUserImage(forUser userImagePath: String, completion: @escaping(Result<UIImage, NetworkError>) -> Void) {
-        guard let imageURL = URL(string: userImagePath) else { completion(.failure(.invalidURL)) ; return }
+        guard let imageURL = URL(string: userImagePath) else { completion(.success(UIImage(named: "Image Placeholder")!)) ; return }
         
         URLSession.shared.dataTask(with: imageURL) { data, _, error in
             if let error = error {

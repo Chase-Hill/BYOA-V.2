@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol SearchTermDelegate {
+    
+    func passSearchTerm(searchTerm: String)
+}
+
 class UserViewController: UIViewController {
     
     // MARK: - Outlets
@@ -38,7 +43,7 @@ class UserViewController: UIViewController {
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
-                    self.userAvatarImage.image = image
+                    self.userAvatarImage.image = image 
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

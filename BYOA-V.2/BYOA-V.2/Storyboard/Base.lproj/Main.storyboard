@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Enter Player Username..." translatesAutoresizingMaskIntoConstraints="NO" id="rmY-5E-N55">
+                            <searchBar contentMode="redraw" verticalHuggingPriority="252" placeholder="Enter Player Username..." translatesAutoresizingMaskIntoConstraints="NO" id="rmY-5E-N55">
                                 <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -26,7 +26,7 @@
                                     <outlet property="delegate" destination="fNU-Hd-EDC" id="EcU-Ou-8OR"/>
                                 </connections>
                             </searchBar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="SzE-BM-8R5">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="Image Placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="SzE-BM-8R5">
                                 <rect key="frame" x="80" y="135" width="233" height="134"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="JjB-Uh-zRL">
@@ -387,6 +387,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="0rL-9s-kNb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yeO-jG-bFD">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="systemMintColor"/>
@@ -406,6 +407,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Image Placeholder" width="860" height="678"/>
         <image name="chessIcon" width="25" height="25"/>
         <image name="chessImage copy" width="320" height="156"/>
         <image name="statsIcon" width="25" height="25"/>

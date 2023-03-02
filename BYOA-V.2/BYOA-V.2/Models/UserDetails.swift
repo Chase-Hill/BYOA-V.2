@@ -15,6 +15,7 @@ struct UserDetails: Decodable {
         case followers
         case location
         case league
+        case isVerified = "verified"
     }
     
     let avatar: String?
@@ -23,4 +24,5 @@ struct UserDetails: Decodable {
     let followers: Int
     let location: String?
     let league: String
+    let isVerified: Bool
 }
