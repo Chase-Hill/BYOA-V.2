@@ -11,15 +11,15 @@ struct UserStats: Decodable {
     private enum CodingKeys: String, CodingKey {
         case daily = "chess_daily"
         case rapid = "chess_rapid"
-        case bullet = "chess_bullet"
         case blitz = "chess_blitz"
+        case bullet = "chess_bullet"
         case tactics
     }
     
     let daily: String
     let rapid: String
-    let bullet: String
     let blitz: String
+    let bullet: String
     let tactics: String
 }
 
@@ -43,7 +43,7 @@ struct Rapid {
     let record: String
 }
 
-struct Bullet {
+struct Blitz {
     private enum CodingKeys: String, CodingKey {
         case best
         case record
@@ -53,7 +53,7 @@ struct Bullet {
     let record: String
 }
 
-struct Blitz {
+struct Bullet {
     private enum CodingKeys: String, CodingKey {
         case best
         case record
@@ -90,6 +90,7 @@ struct Tactics {
     
     let highest: String
 }
+
 struct Highest {
     private enum CodingKeys: String, CodingKey {
         case rating

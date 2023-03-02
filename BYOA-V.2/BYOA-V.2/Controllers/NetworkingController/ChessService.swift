@@ -41,8 +41,37 @@ struct ChessService {
         } .resume()
     }
     
-    static func fetchUserStats(searchTerm: String) {
+    static func fetchUserStats(searchTerm: String, completion: @escaping (Result<UserStats, NetworkError>) -> Void) {
         
+        guard let baseURL = URL(string: Constants.UserService.userBaseURL) else { completion(.failure(.invalidURL)) ; return }
+        var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
+        urlComponents?.path.append(searchTerm)
+        urlComponents?.path.append(Constants.UserService.statsPath)
+        
+        guard let finalURL = urlComponents?.url else { completion(.failure(.invalidURL)) ; return }
+        print("User Stats URL: \(finalURL)")
+        
+        URLSession.shared.dataTask(with: finalURL) { data, response, error in
+            
+            if let error = error {
+                completion(.failure(.thrownError(error))) ; return
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                print("User Stats Status Code: \(response.statusCode)")
+            }
+            
+            guard let data = data else { completion(.failure(.noData)) ; return }
+            
+            do {
+                
+                let user = try JSONDecoder().decode(UserStats.self, from: data)
+                completion(.success(user))
+            } catch {
+                
+                completion(.failure(.unableToDecode)) ; return
+            }
+        } .resume()
     }
     
     static func fetchUserImage(forUser userImagePath: String, completion: @escaping(Result<UIImage, NetworkError>) -> Void) {
