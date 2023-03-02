@@ -16,54 +16,54 @@ struct UserStats: Decodable {
         case tactics
     }
     
-    let daily: String
-    let rapid: String
-    let blitz: String
-    let bullet: String
-    let tactics: String
+    let daily: Daily
+    let rapid: Rapid
+    let blitz: Blitz
+    let bullet: Bullet
+    let tactics: Tactics
 }
 
-struct Daily {
+struct Daily: Decodable {
     private enum CodingKeys: String, CodingKey {
         case best
         case record
     }
     
-    let best: String
-    let record: String
+    let best: Best
+    let record: Record
 }
 
-struct Rapid {
+struct Rapid: Decodable {
     private enum CodingKeys: String, CodingKey {
         case best
         case record
     }
     
-    let best: String
-    let record: String
+    let best: Best
+    let record: Record
 }
 
-struct Blitz {
+struct Blitz: Decodable {
     private enum CodingKeys: String, CodingKey {
         case best
         case record
     }
     
-    let best: String
-    let record: String
+    let best: Best
+    let record: Record
 }
 
-struct Bullet {
+struct Bullet: Decodable {
     private enum CodingKeys: String, CodingKey {
         case best
         case record
     }
     
-    let best: String
-    let record: String
+    let best: Best
+    let record: Record
 }
 
-struct Best {
+struct Best: Decodable {
     private enum CodingKeys: String, CodingKey {
         case rating
     }
@@ -71,7 +71,7 @@ struct Best {
     let rating: Int
 }
 
-struct Record {
+struct Record: Decodable {
     private enum CodingKeys: String, CodingKey {
         case win
         case loss
@@ -83,7 +83,7 @@ struct Record {
     let draw: Int
 }
 
-struct Tactics {
+struct Tactics: Decodable {
     private enum CodingKeys: String, CodingKey {
         case highest
     }
@@ -91,7 +91,7 @@ struct Tactics {
     let highest: String
 }
 
-struct Highest {
+struct Highest: Decodable {
     private enum CodingKeys: String, CodingKey {
         case rating
     }
