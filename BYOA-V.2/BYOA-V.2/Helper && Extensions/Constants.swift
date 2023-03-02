@@ -11,7 +11,7 @@ struct Constants {
     
     struct UserService {
         static let userBaseURL = "https://api.chess.com/pub/player/"
-        static let statsURL = ""
+        static let statsPath = "/stats"
     }
     
     struct Error {

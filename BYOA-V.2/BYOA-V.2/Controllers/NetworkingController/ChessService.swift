@@ -41,7 +41,7 @@ struct ChessService {
         } .resume()
     }
     
-    static func fetchUserStats() {
+    static func fetchUserStats(searchTerm: String) {
         
     }
     
