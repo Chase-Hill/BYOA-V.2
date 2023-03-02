@@ -8,7 +8,7 @@
 import UIKit
 
 class UserViewController: UIViewController {
-
+    
     // MARK: - Outlets
     @IBOutlet weak var userAvatarImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

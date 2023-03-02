@@ -88,7 +88,7 @@ struct Tactics: Decodable {
         case highest
     }
     
-    let highest: String
+    let highest: Highest
 }
 
 struct Highest: Decodable {
