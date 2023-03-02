@@ -7,9 +7,8 @@
 
 import UIKit
 
-protocol SearchTermDelegate {
-    
-    func passSearchTerm(searchTerm: String)
+protocol SearchTermDelegate: AnyObject {
+    func didSelect(searchTerm: String)
 }
 
 class UserViewController: UIViewController {
@@ -25,10 +24,11 @@ class UserViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("\(#file)\(#line)")
         
         searchBar.delegate = self
     }
-
+    
     // MARK: - Properties
     var userDetails: UserDetails? {
         didSet {
@@ -37,31 +37,36 @@ class UserViewController: UIViewController {
         }
     }
     
+    weak var searchTermDelegate: SearchTermDelegate?
+    
     // MARK: - Functions
+    private func presentNoUserFoundAlertController(messageText: String) {
+        let alertController = UIAlertController(title: "No User Found", message: messageText, preferredStyle: .alert)
+        
+        let dismissAction = UIAlertAction(title: "Okay", style: .cancel)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true)
+    }
+    
     func updateViews(forUser user: UserDetails) {
-        ChessService.fetchUserImage(forUser: user.avatar ?? "") { result in
+        self.nameLabel.text = "Player Name: \(user.name ?? "No Name Availablee")"
+        self.followerLabel.text = "Player Follower Count: \(user.followers)"
+        self.locationLabel.text = "Player Location: \(user.location ?? "User Is Not Displaying Location")"
+        self.leagueLabel.text = "Player Current League: \(user.league)"
+        fetchUserImage(forUser: user)
+    }
+    
+    func fetchUserImage(forUser user: UserDetails) {
+        ChessService.fetchUserImage(forUser: user.avatar ?? "") { [weak self] result in
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
-                    self.userAvatarImage.image = image 
+                    self?.userAvatarImage.image = image
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.userAvatarImage.image = nil
+                    self?.userAvatarImage.image = nil
                 }
-                print(error.errorDescription ?? Constants.Error.unknownError)
-            }
-        }
-        ChessService.fetchChessUser(searchTerm: user.username) { result in
-            switch result {
-            case .success(let user):
-                DispatchQueue.main.async {
-                    self.nameLabel.text = "Player Name: \(user.name ?? "No Name Availablee")"
-                    self.followerLabel.text = "Player Follower Count: \(user.followers)"
-                    self.locationLabel.text = "Player Location: \(user.location ?? "User Is Not Displaying Location")"
-                    self.leagueLabel.text = "Player Current League: \(user.league)"
-                }
-            case .failure(let error):
                 print(error.errorDescription ?? Constants.Error.unknownError)
             }
         }
@@ -70,18 +75,20 @@ class UserViewController: UIViewController {
 
 extension UserViewController: UISearchBarDelegate {
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text, !searchTerm.isEmpty else { return }
         
-        ChessService.fetchChessUser(searchTerm: searchTerm) { user in
-            switch user {
+        ChessService.fetchChessUser(searchTerm: searchTerm) { [weak self] result in
+            switch result {
             case .success(let user):
                 DispatchQueue.main.async {
-                    self.userDetails = user
-                    self.updateViews(forUser: user)
+                    self?.userDetails = user
+                    self?.updateViews(forUser: user)
                 }
             case .failure( let error):
+                DispatchQueue.main.async {
+                    self?.presentNoUserFoundAlertController(messageText: error.errorDescription!)
+                }
                 print(error.errorDescription ?? Constants.Error.unknownError)
             }
         }

@@ -45,7 +45,7 @@ struct ChessService {
         
         guard let baseURL = URL(string: Constants.UserService.userBaseURL) else { completion(.failure(.invalidURL)) ; return }
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        urlComponents?.path.append("Chase_hill9")
+        urlComponents?.path.append(searchTerm)
         urlComponents?.path.append(Constants.UserService.statsPath)
         
         guard let finalURL = urlComponents?.url else { completion(.failure(.invalidURL)) ; return }
